@@ -1,0 +1,41 @@
+{
+    "os": "Linux-5.10.147+-x86_64-with-glibc2.31",
+    "python": "3.10.11",
+    "heartbeatAt": "2023-05-06T20:37:37.735040",
+    "startedAt": "2023-05-06T20:37:32.352009",
+    "docker": null,
+    "cuda": null,
+    "args": null,
+    "state": "running",
+    "program": "Copy%20of%20Text%20Preprocessing%20and%20Analysis.ipynb",
+    "colab": "https://colab.research.google.com/notebook#fileId=1PoMK2AmvcIbewIDRwYHkyGmgSd-5heqa",
+    "host": "ba99b0ea5012",
+    "username": "root",
+    "executable": "/usr/bin/python3",
+    "cpu_count": 1,
+    "cpu_count_logical": 2,
+    "cpu_freq": {
+        "current": 2249.998,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2249.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2249.998,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 107.71508407592773,
+        "used": 23.46733856201172
+    },
+    "memory": {
+        "total": 12.681190490722656
+    }
+}
