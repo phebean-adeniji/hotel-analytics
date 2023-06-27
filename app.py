@@ -70,7 +70,10 @@ for index, hotel in enumerate(hotels):
         topic = st.selectbox('Choose a topic:', topic_names, key=topic_key)
 
         # 3. Return the summary of the positive, neutral, and negative reviews under that category
-        sentiment = st.selectbox('', ('Summary of the positive reviews', 'Summary of the neutral reviews', 'Summary of the negative reviews'), key=sentiment_key)
+        sentiment = st.selectbox('', (
+            'Summary of the positive reviews', 
+            'Summary of the neutral reviews', 
+            'Summary of the negative reviews'), key=sentiment_key)
 
         df = hotel_df[hotel_df["review_topic"] == topic]
 
