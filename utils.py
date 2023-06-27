@@ -11,7 +11,7 @@ from spacy.lang.en.stop_words import STOP_WORDS
 nlp = spacy.load('en_core_web_sm')
 # from summarizer import Summarizer
 
-df = pd.read_csv('results/hotel_split_reviews-sentiments-and-ldatopics-updated.csv')
+df = pd.read_csv('results/hotel_split_reviews-sentiments-and-ldatopics-8Topics.csv')
 # df = df.drop_duplicates()
 
 eko_df = df[df.hotel_name=='Eko Hotel']
@@ -91,8 +91,8 @@ def tokenize_text(input_text):
     tokens = [token.text for token in doc]
     return tokens
 
-def generate_wordcloud(text, stopwords = stopwords):
-     # Tokenize the joined text into individual words
+def generate_wordcloud(text, stopwords=stopwords):
+    # Tokenize the joined text into individual words
     tokens = tokenize_text(text)
 
     # Remove stop words from the tokens
@@ -102,8 +102,7 @@ def generate_wordcloud(text, stopwords = stopwords):
     filtered_text = " ".join(filtered_tokens)
 
     # Generate word cloud
-    word_cloud = WordCloud(collocations = False, background_color = 'white').generate(str(text))
-    wordcloud = WordCloud(width=800, height=400).generate(filtered_text)
+    wordcloud = WordCloud(width=800, height=400, stopwords=stopwords).generate(filtered_text)
 
     # Display word cloud in Streamlit app
     return st.image(wordcloud.to_array())
@@ -126,9 +125,9 @@ def plot_topic_sentiment_dist(hotel_df:pd.DataFrame, topic_col_name:str, sentime
     st.dataframe(grouped_data)
 
     # Generate grouped bar chart
-    grouped_data.plot(kind='bar', stacked=True)
-    plt.xlabel('Topic')
-    plt.ylabel('Count')
+    grouped_data.plot(kind='barh', stacked=True)
+    plt.xlabel('Count')
+    plt.ylabel('Topic')
     plt.title('Sentiment Distribution by Topic')
     st.pyplot(plt)
 
