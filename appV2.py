@@ -27,12 +27,13 @@ imageUrls = [
 imageCarouselComponent = components.declare_component("image-carousel-component", path="frontend/public")
 # Get instant insights into customer opinions using advanced NLP techniques. Discover topics, sentiments, and key highlights at a glance. Make informed decisions based on the collective voice of individuals
 def home_page():
-    st.markdown("""<h1 style='text-align: center; color: black;'>Welcome to Hotel Reviews Analytics!</h1><p style='color: #e6d8a7;'>""", unsafe_allow_html=True)
-    st.markdown("""<p style='text-align: center; color: black;'>Get insight into other customers' opinions on these luxury hotel in Lagos. Use the insights to your advantage! Make decisions on which hotel will meet your specific needs. We provide the sentiments (positive, negative and neutral) across different topics such as the hotel rooms, food, ambience, staff, etc.</p><p style='color: #e6d8a7;'>""", unsafe_allow_html=True)
+    # st.markdown("""<h1 style='text-align: center; color: black;'>Welcome to Hotel Reviews Analytics!</h1><p style='color: #e6d8a7;'>""", unsafe_allow_html=True)
+    st.header('Welcome to Hotel Reviews Analytics!')
+    st.write("Get insight into other customers' opinions on these luxury hotel in Lagos. Use the insights to your advantage! Make decisions on which hotel will meet your specific needs. We provide the sentiments (positive, negative and neutral) across different topics such as the hotel rooms, food, ambience, staff, etc.")
     st.subheader("")
     st.subheader("")
     st.subheader("")
-    selectedImageUrl = imageCarouselComponent(imageUrls=imageUrls, height=400)
+    selectedImageUrl = imageCarouselComponent(imageUrls=imageUrls, height=200)
 
     if selectedImageUrl is not None:
         st.image(selectedImageUrl)
@@ -63,7 +64,7 @@ def set_page_config():
     )
 def main():
     set_page_config()
-    st.sidebar.markdown("""<style>body {background-color: #2C3454;white;}</style><body></body>""", unsafe_allow_html=True)
+    # st.sidebar.markdown("""<style>body {background-color: #2C3454;white;}</style><body></body>""", unsafe_allow_html=True)
    
     topic_names = utils.df['review_topic'].unique().tolist()
     # desired_topic = "Room Quality and Standards"  # Replace with your desired topic name
