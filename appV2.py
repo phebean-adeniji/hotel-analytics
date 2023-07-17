@@ -67,10 +67,10 @@ def main():
     # st.sidebar.markdown("""<style>body {background-color: #2C3454;white;}</style><body></body>""", unsafe_allow_html=True)
    
     topic_names = utils.df['review_topic'].unique().tolist()
-    # desired_topic = "Room Quality and Standards"  # Replace with your desired topic name
-    # if desired_topic in topic_names:
-    #     topic_names.remove(desired_topic)
-    #     topic_names.insert(0, desired_topic)
+    desired_topic = "Room Quality and Standards"  # Replace with your desired topic name
+    if desired_topic in topic_names:
+        topic_names.remove(desired_topic)
+        topic_names.insert(0, desired_topic)
 
     def get_dataframe_by_hotel_name(hotel_list, hotel_name):
         for hotel_dict in hotel_list:
@@ -78,15 +78,15 @@ def main():
                 return hotel_dict["hotel_df"]
 
 
-    st.sidebar.title('Menu')
-    Options = st.sidebar.selectbox(
-        '', ['Go Home',
-        'Eko Hotels & Suites, Victoria Island',
-        'Radisson Blu Hotel, Victoria Island',
-        'Lagos Oriental Hotel, Lekki',
-        'Four Points by Sheraton Lagos, Victoria Island',
-        'Sharaton Lagos Hotel, Ikeja'], index=0
-    )
+    with st.expander('Menu'):
+        Options = st.sidebar.selectbox(
+            '', ['Go Home',
+            'Eko Hotels & Suites, Victoria Island',
+            'Radisson Blu Hotel, Victoria Island',
+            'Lagos Oriental Hotel, Lekki',
+            'Four Points by Sheraton Lagos, Victoria Island',
+            'Sharaton Lagos Hotel, Ikeja'], index=0
+        )
 
 
     # Create checkboxes for each hotel
