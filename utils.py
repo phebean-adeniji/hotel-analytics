@@ -12,7 +12,7 @@ import altair as alt
 nlp = spacy.load('en_core_web_sm')
 # from summarizer import Summarizer
 
-df = pd.read_csv('results/hotel_split_reviews-sentiments-and-ldatopics-8Topics.csv')
+df = pd.read_csv('hotel_split_reviews-sentiments-and-ldatopics-8Topics.csv')
 # df = df.drop_duplicates()
 # print(df.columns)
 eko_df = df[df.hotel_name=='Eko Hotel']
