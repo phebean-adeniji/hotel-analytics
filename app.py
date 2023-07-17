@@ -31,7 +31,7 @@ imageUrls = [
     "https://lh5.googleusercontent.com/p/AF1QipNjdE-SXwPaoHofsEl9cXr9-upmLUh4dnSwQ1on=w253-h168-k-no",
     "https://lh5.googleusercontent.com/p/AF1QipO_g56B9MGVef_u7nQsZa8JM_CszIJSu1duS45p=w253-h168-k-no",
 ]
-selectedImageUrl = imageCarouselComponent(imageUrls=imageUrls, height=200)
+selectedImageUrl = imageCarouselComponent(imageUrls=imageUrls, height=400)
 
 if selectedImageUrl is not None:
     st.image(selectedImageUrl)
@@ -54,19 +54,21 @@ def get_dataframe_by_hotel_name(hotel_list, hotel_name):
 
 
 # Create checkboxes for each hotel
-selected_hotels = [st.checkbox(hotel) for hotel in hotels]
+selected_hotel = [st.checkbox(hotel) for hotel in hotels]
 
 for index, hotel in enumerate(hotels):
-    if selected_hotels[index]:
+    if selected_hotel[index]:
         # 1. Show the location on a map
+        st.markdown("###### Locate Hotel on Google Maps")
         utils.render_google_map(hotel)
         hotel_df = get_dataframe_by_hotel_name(utils.hotel_list, hotel)
         # 2. Plot a chart
+        st.markdown("###### This table gives an overview the number of sentiments in each topic")
         utils.plot_topic_sentiment_dist(hotel_df, "review_topic", "Sentiment")
 
         topic_key = f"{hotel}_topic"  # Unique key for topics
         sentiment_key = f"{hotel}_sentiment"  # Unique key for sentiments
-
+        st.markdown(f"###### Do you want to find out what people are saying about {selected_hotel}")
         topic = st.selectbox('Choose a topic:', topic_names, key=topic_key)
 
         # 3. Return the summary of the positive, neutral, and negative reviews under that category
@@ -92,6 +94,7 @@ for index, hotel in enumerate(hotels):
             st.write(utils.text_summarizer(reviews_text))
 
         # 4. Show the word cloud of keywords
+        st.write("utils.text_summarizer(reviews_text)")
         with st.spinner("Generating a Word Cloud..."):
             # Simulate processing time
             time.sleep(2)

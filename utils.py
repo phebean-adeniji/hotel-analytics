@@ -8,12 +8,13 @@ from heapq import nlargest
 import spacy 
 # Text Preprocessing Pkg
 from spacy.lang.en.stop_words import STOP_WORDS
+import altair as alt
 nlp = spacy.load('en_core_web_sm')
 # from summarizer import Summarizer
 
 df = pd.read_csv('results/hotel_split_reviews-sentiments-and-ldatopics-8Topics.csv')
 # df = df.drop_duplicates()
-
+# print(df.columns)
 eko_df = df[df.hotel_name=='Eko Hotel']
 sheraton_df = df[df.hotel_name=='Sheraton Lagos']
 radisson_df = df[df.hotel_name=='Radisson Blu VI']
@@ -86,6 +87,13 @@ def text_summarizer(raw_docx, stopwords = stopwords):
     
     return summary
 
+def convert_to_sentence_case(paragraph):
+    sentences = paragraph.split('. ')  # Split the paragraph into individual sentences
+    capitalized_sentences = [sentence.capitalize() for sentence in sentences]  # Capitalize the first character of each sentence
+    converted_paragraph = '. '.join(capitalized_sentences)  # Join the sentences back into a paragraph
+
+    return converted_paragraph
+
 def tokenize_text(input_text):
     doc = nlp(input_text)
     tokens = [token.text for token in doc]
@@ -121,13 +129,12 @@ def plot_topic_sentiment_dist(hotel_df:pd.DataFrame, topic_col_name:str, sentime
     grouped_data = hotel_df.groupby([topic_col_name, sentiment_col_name]).size().unstack(fill_value=0)
 
     # Display topic categories and sentiment distribution
-    st.subheader('Sentiment Distribution by Topic')
-    st.dataframe(grouped_data)
-
+    # st.subheader('Sentiment Distribution by Topic')
+    # st.dataframe(grouped_data)
+    fig, ax = plt.subplots()
     # Generate grouped bar chart
-    grouped_data.plot(kind='barh', stacked=True)
-    plt.xlabel('Count')
+    grouped_data.plot(kind='barh', stacked=True, ax=ax)
+    # plt.xlabel('Count')
     plt.ylabel('Topic')
-    plt.title('Sentiment Distribution by Topic')
-    st.pyplot(plt)
-
+    # plt.title('Sentiment Distribution by Topic')
+    st.pyplot(fig)
