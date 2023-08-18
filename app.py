@@ -37,13 +37,21 @@ if selectedImageUrl is not None:
     st.image(selectedImageUrl)
 
 
-hotels = [
-    'Eko Hotels & Suites, Victoria Island',
-    'Radisson Blu Hotel, Victoria Island',
-    'Lagos Oriental Hotel, Lekki',
-    'Four Points by Sheraton Lagos, Victoria Island',
-    'Sharaton Lagos Hotel, Ikeja'
-]
+# hotels = [
+#     'Eko Hotels & Suites, Victoria Island',
+#     'Radisson Blu Hotel, Victoria Island',
+#     'Lagos Oriental Hotel, Lekki',
+#     'Four Points by Sheraton Lagos, Victoria Island',
+#     'Sharaton Lagos Hotel, Ikeja'
+# ]
+
+hotels = {
+    'Hotel A': 'Eko Hotels & Suites, Victoria Island',
+    'Hotel B': 'Four Points by Sheraton Lagos, Victoria Island',
+    'Hotel C': 'Sharaton Lagos Hotel, Ikeja',
+    'Hotel D': 'Lagos Oriental Hotel, Lekki',
+    'Hotel E': 'Radisson Blu Hotel, Victoria Island'
+}
 
 topic_names = utils.df['review_topic'].unique().tolist()
 
@@ -54,9 +62,9 @@ def get_dataframe_by_hotel_name(hotel_list, hotel_name):
 
 
 # Create checkboxes for each hotel
-selected_hotel = [st.checkbox(hotel) for hotel in hotels]
+selected_hotel = [st.checkbox(hotel) for hotel in list(hotels.keys())]
 
-for index, hotel in enumerate(hotels):
+for index, hotel in enumerate(list(hotels.values())):
     if selected_hotel[index]:
         # 1. Show the location on a map
         st.markdown("###### Locate Hotel on Google Maps")
